@@ -31,6 +31,8 @@ emoji_map = {
 
 }
 
+df['flag'] = df['team'].map(lambda x: emoji_map[x])
+
 # Filters
 selected_round = st.radio(
     "",
@@ -72,7 +74,7 @@ def plot_scatter(df, positions=['back-row'], teams=['France'], round_name='All R
     fig = px.scatter(tp,
            x=price_col, 
            y=points_col,
-           hover_data=['name'],
+           custom_data=['name', 'position'],
            width=1200, height=600)
     
     ## Add 
@@ -102,16 +104,20 @@ def plot_scatter(df, positions=['back-row'], teams=['France'], round_name='All R
     for i,r in tp.iterrows():
         fig.add_annotation(
                 x=r[price_col], y=r[points_col],
-                text=emoji_map[r['team']],
+                text=r['flag'],
                 ax=0,
                 ay=0,
                 font_size=20
                 )
     
+
+    fig.update_traces(
+    hovertemplate="<b>%{customdata[0]}</b><br>Position: %{customdata[1]}<br>Price: %{x} <br>Points: %{y}"
+)
     fig.update_shapes(dict(xref='x', yref='y'))
     fig.update_layout(xaxis_range=[min_x - 3, max_x + 3])
     fig.update_layout(yaxis_range=[min_y - 5, max_y + 7])
-    fig.update_layout(showlegend=False)
+    fig.update_layout(showlegend=False, xaxis_title='Price', yaxis_title='Points per Round')
     return fig
 
 fig = plot_scatter(df, positions=selected_positions, teams=selected_teams, round_name=selected_round)
