@@ -156,6 +156,7 @@ with tab2:
                      orientation='h',
                      text=by_team['flag'] + ' ' + by_team[tab2_points_col].astype(str))
         fig_team.update_layout(showlegend=False, 
+                            width=600,
                             title='Performance by team',
                             titlefont=dict(size=24),
                                yaxis = dict(
@@ -228,7 +229,7 @@ with tab3:
             except:
                 comp_by_round[i] = None
         comp_by_round = comp_by_round[[0,1,2,3,4,5]].T.cumsum()
-        fig_by_round = px.line(comp_by_round, markers=True, width=750, height=600)
+        fig_by_round = px.line(comp_by_round, markers=True, width=600, height=600)
         fig_by_round.update_layout(showlegend=True, 
                                 yaxis = dict(
                                         title='Points',
