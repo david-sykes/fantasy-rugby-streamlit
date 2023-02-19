@@ -41,8 +41,13 @@ tab1, tab2, tab3 = st.tabs(['Player Value Analysis', 'Summary Stats', 'Players H
 
 
 with tab1:
+    st.markdown('## Player Value Analysis')
+    st.markdown('`This tab looks at the relationship between the points a player earns and their price.\
+                Price is on the x-axis and points on the y-axis. The dotted lines represent \
+                different points per price ratios. The higher the points per price ratio the better \
+                value that player represents.`')
     tab1_selected_round = st.radio(
-        "",
+        "Filter by round:",
         ['Round 1', 'Round 2', 'Round 3', 'Round 4', 'Round 5', 'All Rounds'],
         horizontal=True
         )
@@ -50,13 +55,13 @@ with tab1:
 
     with t1col1:
         selected_positions =  st.multiselect(
-            'Positions:',
+            'Filter by positions:',
             positions,
             default=positions)
 
     with t1col2:
         selected_teams =  st.multiselect(
-            'Teams:',
+            'Filter by teams:',
             teams,
             default=teams)
 
