@@ -10,6 +10,8 @@ st.set_page_config(layout="wide")
 df = pd.read_csv('data/data.csv')
 
 st.write('## :rugby_football: 🤓 Six Nations Fantasy Rugby Analytics 🤓 :rugby_football: ')
+st.write(':bird: [@david_sykes89](https://twitter.com/david_sykes89)')
+st.write('💻 [david-sykes](https://github.com/david-sykes)')
 
 # Layout options
 rounds = {
