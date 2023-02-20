@@ -44,9 +44,9 @@ tab1, tab2, tab3 = st.tabs(['Player Value Analysis', 'Summary Stats', 'Players H
 
 with tab1:
     st.markdown('## Player Value Analysis')
-    st.markdown('`This tab looks at the relationship between the points a player earns and their price.\
+    st.markdown('`This tab looks at the relationship between the points a player earns and their price in stars.\
                 Price is on the x-axis and points on the y-axis. The dotted lines represent \
-                different points per price ratios. The higher the points per price ratio the better \
+                different points per star ratios. The higher the points per star ratio the better \
                 value that player represents.`')
     tab1_selected_round = st.radio(
         "Filter by round:",
@@ -100,7 +100,7 @@ with tab1:
                         dash="dot")
                         )
             fig.add_annotation(x=max_x+1, y=value*max_x,
-                text=f"{value} points per price unit",
+                text=f"{value} points per star ratio",
                 showarrow=False,
                 arrowhead=1)
             ## Add sub-lines
@@ -125,12 +125,12 @@ with tab1:
         
 
         fig.update_traces(
-        hovertemplate="<b>%{customdata[0]}</b><br>Position: %{customdata[1]}<br>Price: %{x} <br>Points: %{y}"
+        hovertemplate="<b>%{customdata[0]}</b><br>Position: %{customdata[1]}<br>Stars: %{x} <br>Points: %{y}"
     )
         fig.update_shapes(dict(xref='x', yref='y'))
         fig.update_layout(xaxis_range=[min_x - 3, max_x + 3])
         fig.update_layout(yaxis_range=[min_y - 5, max_y + 7])
-        fig.update_layout(showlegend=False, xaxis_title='Price', yaxis_title='Points per Round')
+        fig.update_layout(showlegend=False, xaxis_title='Price in Stars', yaxis_title='Points per Round')
         return fig
 
     fig = plot_scatter(df, positions=selected_positions, teams=selected_teams, round_name=tab1_selected_round)
