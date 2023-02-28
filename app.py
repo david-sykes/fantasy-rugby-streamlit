@@ -311,6 +311,6 @@ with tab3:
     st.markdown("`Each point area (e.g. Kicking) is ranked from 0 to 1 with 0 being the worst of all players in the competition and 1 being the best.`""")
 
     all_player_df = radar_df[['position', 'team', 'num_matches', 
-                              'latest_price', 'points_all_rounds',
+                              'latest_price', 'total_points_all_rounds',
                               ] + cols]
     st.dataframe(all_player_df, use_container_width=True)
